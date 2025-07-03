@@ -9,7 +9,7 @@ import java.util.Calendar
 import java.util.Date
 
 object FlowConstants {
-    const val API_KEY = "6e57c12676116706af4848cf8663e0fc"
+    const val API_KEY = ""
 
     val provider = GoogleFont.Provider(
         providerAuthority = "com.google.android.gms.fonts",
