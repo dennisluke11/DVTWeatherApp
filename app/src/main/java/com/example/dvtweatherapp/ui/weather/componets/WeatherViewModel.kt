@@ -22,13 +22,23 @@ class WeatherViewModel(
 
     fun loadWeatherFromCurrentLocation() {
         viewModelScope.launch {
+            if (FlowConstants.API_KEY.isBlank()) {
+                _uiState.value = _uiState.value.copy(
+                    errorMessage = "API Key is missing. Please provide a valid API key.",
+                    isLoading = false
+                )
+                return@launch
+            }
+
+            _uiState.value = _uiState.value.copy(
+                isLoading = true,
+                errorMessage = null,
+                weather = null,
+                city = ""
+            )
+
             try {
                 val (latitude, longitude) = locationHelper.getCurrentLocation()
-
-                _uiState.value = _uiState.value.copy(
-                    isLoading = true,
-                    errorMessage = null
-                )
 
                 val weatherResponse =
                     repository.getForecastWeather(latitude, longitude, FlowConstants.API_KEY)
@@ -58,16 +68,30 @@ class WeatherViewModel(
             }
         }
     }
+
     fun searchWeatherByCityName(city: String) {
         viewModelScope.launch {
+            if (FlowConstants.API_KEY.isBlank()) {
+                _uiState.value = _uiState.value.copy(
+                    errorMessage = "API Key is missing. Please provide a valid API key.",
+                    isLoading = false
+                )
+                return@launch
+            }
+
             if (city.isBlank()) {
-                _uiState.value = _uiState.value.copy(errorMessage = "City name cannot be empty")
+                _uiState.value = _uiState.value.copy(
+                    errorMessage = "City name cannot be empty",
+                    isLoading = false
+                )
                 return@launch
             }
 
             _uiState.value = _uiState.value.copy(
                 isLoading = true,
-                errorMessage = null
+                errorMessage = null,
+                weather = null,
+                city = ""
             )
 
             try {
