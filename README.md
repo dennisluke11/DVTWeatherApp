@@ -45,7 +45,7 @@ Usage
 - **CurrentWeatherCard**  
   Displays the next five dats temperature, icon, day of the week, and city.
 
-  <img src="https://github.com/user-attachments/assets/43364faf-f20e-4405-8e65-a2376aad0b93" alt="Screenshot_20250703_162738_DVTWeatherApp" width="300"/>
+ <img src="https://github.com/user-attachments/assets/43364faf-f20e-4405-8e65-a2376aad0b93" alt="Screenshot_20250703_162738_DVTWeatherApp" width="100%"/>
 
 - **Error / Loading States**  
   Intuitive UI messaging.
